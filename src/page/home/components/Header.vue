@@ -2,24 +2,20 @@
     <div class="header">
        <div class="header-left"><</div>
         <div class="header-input">输入城市/景点/游玩主题</div>
-        <div class="header-right">城市</div>
+        <router-link to="/city">
+            <div class="header-right">{{this.city}}</div>
+        </router-link>
+
     </div>
 </template>
 
 <script>
-
+    import { mapState } from 'vuex'
     export default {
         name: 'HomeHeader',
-        data(){
-            return {
-
-            }
-        },
-        mounted(){
-
-        },
-        methods: {}
-
+        computed: mapState([
+            "city"
+        ])
     }
 </script>
 
@@ -27,8 +23,8 @@
     @import "~styles/varibles.styl"
     .header
         display: flex
-        height: .86rem
-        line-height: .86rem
+        height: $headerHeight
+        line-height: $headerHeight
         background: $bgcolor
         color: #fff
         .header-left
@@ -47,8 +43,10 @@
             line-height: .64rem
             text-indent: .1rem
         .header-right
-            width: 1.24rem
+            min-width: 1.04rem
+            padding: 0 .2rem
             float: right;
+            color: #fff
             text-align: center
 
 </style>

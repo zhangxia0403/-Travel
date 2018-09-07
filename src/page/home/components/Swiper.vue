@@ -1,9 +1,9 @@
 <template>
 
     <div class="wrapper">
-        <swiper :options="swiperOption">
-            <swiper-slide v-for="item of swiperList" :key="item.id">
-                <img class="swiper-img" :src="item.imgurl" alt="">
+        <swiper :options="swiperOption" v-if="showSwiper">
+            <swiper-slide v-for="item of list" :key="item.id">
+                <img class="swiper-img" :src="item.imgUrl" alt="">
             </swiper-slide>
             <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>
@@ -20,25 +20,16 @@
                     pagination: '.swiper-pagination',
                     loop: true
                 },
-                swiperList:[
-                    {
-                        id: '001',
-                        imgurl: 'http://img1.qunarzz.com/piao/fusion/1808/70/5603e6a535062402.jpg_750x200_2c552f2c.jpg'
-                    },
-                    {
-                        id: '002',
-                        imgurl: 'https://img1.qunarzz.com/piao/fusion/1808/fd/fddc5309111a0402.jpg_750x200_e7b93551.jpg'
-                    }
-                ]
             }
         },
+        props:{
+           list: Array
+        },
         computed:{
-
+            showSwiper (){
+                return this.list.length
+            }
         },
-        mounted(){
-
-        },
-        methods: {}
 
     }
 </script>
@@ -52,7 +43,7 @@
         /*图片高度相对于宽度的百分比*/
         overflow: hidden
         height: 0
-        padding-bottom: 26.67%
+        padding-bottom: 31.25%
         background: #f2f2f2
         .swiper-img
             width: 100%
